@@ -5,7 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -14,9 +14,8 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @Entity // 아래 구조대로 DB 테이블을 만들어야 한다.
 @Getter
 @Setter
-@RequiredArgsConstructor
 @ToString //toString 안붙이면 객체 리모컨의 정보가 나옴.
-//@NoArgsConstructor
+@NoArgsConstructor
 public class Post {
     @Id // PRIMARY KEY
     @GeneratedValue(strategy =  IDENTITY) // AUTO_INCREMENT
