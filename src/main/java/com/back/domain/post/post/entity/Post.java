@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.time.LocalDateTime;
+
 import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Entity // 아래 구조대로 DB 테이블을 만들어야 한다.
@@ -20,11 +22,15 @@ public class Post {
     @Id // PRIMARY KEY
     @GeneratedValue(strategy =  IDENTITY) // AUTO_INCREMENT
     private int id; // INT
-    private String title=""; // VARCHAR(255)
+    private LocalDateTime createDate;
+    private LocalDateTime modifyDate;
+    private String title; // VARCHAR(255)
     @Column(columnDefinition = "TEXT")
     private String content;
 
     public Post(String title, String content) {
+        this.createDate = LocalDateTime.now();
+        this.modifyDate = this.createDate;
         this.title = title;
         this.content = content;//final을 붙여서 초기화 해야한다.
     }
