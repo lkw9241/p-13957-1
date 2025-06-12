@@ -30,7 +30,8 @@ public class BaseInitData {
     Post post1 = postRepository.save(new Post("제목 1","내용 1"));
     Post post2 = postRepository.save(new Post("제목 1","내용 2"));
 
-
+            System.out.println(post1.getId());
+            System.out.println(post2.getId());
             System.out.println("기본 데이터 초기화 작업을 수행합니다.");
     }
     void work2(){

@@ -22,10 +22,11 @@ public class Post {
     private int id; // INT
     private String title=""; // VARCHAR(255)
     @Column(columnDefinition = "TEXT")
-    private String content="";
+    private String content;
 
     public Post(String title, String content) {
-        this.title = "";
-        this.content = "";//final을 붙여서 초기화 해야한다.
+        this.title = title;
+        this.content = content;//final을 붙여서 초기화 해야한다.
     }
+
 }
