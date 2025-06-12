@@ -1,5 +1,6 @@
 package com.back.global.initData;
 
+import com.back.domain.post.post.entity.Post;
 import com.back.domain.post.post.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationRunner;
@@ -17,8 +18,12 @@ public class BaseInitData {
         return args ->{
             System.out.println("기본 데이터 초기화 작업을 수행합니다.");
 
-            postRepository.count();
+            Post post = new Post();
+            post.setTitle("제목 1");
 
+            postRepository.save(post);
+            //INSERT INTO post set title = '제목 1';
+            //id는 auto_increment이므로 자동으로 증가한다.
 
         };
 
