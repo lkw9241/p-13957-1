@@ -16,15 +16,22 @@ public class BaseInitData {
     @Bean
     ApplicationRunner BaseInitDataApplicationRunner(){
         return args ->{
-            System.out.println("기본 데이터 초기화 작업을 수행합니다.");
 
-            Post post = new Post();
-            post.setTitle("제목 1");
+            if(postRepository.count() >0) return;
 
-            postRepository.save(post);
-            //INSERT INTO post set title = '제목 1';
+            Post post1 = new Post();
+            post1.setTitle("제목 1");
+
+            postRepository.save(post1);
+
+            Post post2 = new Post();
+            post2.setTitle("제목 1");
+
+            postRepository.save(post2);
+            //INSERT INTO post2 set title = '제목 1';
             //id는 auto_increment이므로 자동으로 증가한다.
 
+            System.out.println("기본 데이터 초기화 작업을 수행합니다.");
         };
 
     }
