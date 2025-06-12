@@ -7,6 +7,8 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.Optional;
+
 @Configuration
 public class BaseInitData {
 
@@ -17,24 +19,26 @@ public class BaseInitData {
     ApplicationRunner BaseInitDataApplicationRunner(){
         return args ->{
 
-            if(postRepository.count() >0) return;
-
-            Post post1 = new Post();
-            post1.setTitle("제목 1");
-
-            postRepository.save(post1);
-
-            Post post2 = new Post();
-            post2.setTitle("제목 1");
-
-            postRepository.save(post2);
-            //INSERT INTO post2 set title = '제목 1';
-            //id는 auto_increment이므로 자동으로 증가한다.
-
-            System.out.println("기본 데이터 초기화 작업을 수행합니다.");
+            work1();//생성의 역할
+            work2();//조회의 역할
         };
 
     }
+    void work1(){
+    if(postRepository.count() >0) return;
+
+    Post post1 = postRepository.save(new Post("제목 1","내용 1"));
+    Post post2 = postRepository.save(new Post("제목 1","내용 2"));
 
 
+            System.out.println("기본 데이터 초기화 작업을 수행합니다.");
+    }
+    void work2(){
+        Optional<Post> opPost1 = postRepository.findById(1);
+
+
+        Post post1 = opPost1.get();
+
+        System.out.println("post1 : "+post1);
+    }
 }
